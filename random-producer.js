@@ -22,24 +22,24 @@ function buildDatasource (interval) {
     read (size) {}
   })
 
-  setInterval(() => {
-    const rand = Math.random()
-    if (rand < 0.3) {
-      stream.push({ you_know: 'for search' })
-    } else if (rand >= 0.3 && rand < 0.7) {
-      stream.push({
-        first: 'second',
-        third: 'fourth'
-      })
-    } else {
-      stream.push({
-        hello: 'world',
-        ciao: 'mondo',
-        hola: 'mundo',
-        hallo: 'welt'
-      })
+  setTimeout(onTimeout, 10)
+
+  function onTimeout () {
+    stream.push(buildDocument())
+    setTimeout(onTimeout, Math.random() > 0.8 ? 10 : 5)
+  }
+
+  function randomInt (minimum, maximum) {
+    return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum
+  }
+
+  function buildDocument () {
+    const doc = {}
+    for (let i = 0; i < randomInt(1, 500); i++) {
+      doc[`key-${i}`] = `val-${i}`
     }
-  }, interval)
+    return doc
+  }
 
   return stream
 }
