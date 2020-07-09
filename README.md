@@ -203,4 +203,4 @@ npm install esmaster@github:elastic/elasticsearch-js
 
 ## License
 
-This software is licensed under the [Apache 2 license](./LICENSE).
+Only Canarytrace Developer is licensed under the [Apache 2 license](./LICENSE).
